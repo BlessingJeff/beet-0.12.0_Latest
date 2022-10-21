@@ -1,0 +1,105 @@
+{
+  "name": "beet",
+  "productName": "Beet Blockchain Companion",
+  "version": "0.12.0",
+  "apiversion": 3,
+  "description": "Beet is a stand-alone key-manager and signing app for blockchains like BitShares, Steem and EOS, as well as BTC, BinanceChain and others.",
+  "author": "clockworkgr <alex@clockwork.gr>",
+  "license": "MIT",
+  "homepage": "https://github.com/bitshares/beet",
+  "repository": "github:bitshares/beet",
+  "main": "app/background.js",
+  "build": {
+    "appId": "io.get-beet.beet",
+    "productName": "Beet Blockchain Companion",
+    "artifactName": "BeetSetup.${ext}",
+    "files": [
+      "app/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "resources"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "category": "Utility"
+    }
+  },
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "start": "node build/start.js",
+    "compile": "webpack --config=build/webpack.app.config.js --env=production",
+    "build": "webpack --config=build/webpack.app.config.js --env=production && electron-builder --publish never",
+    "release": "webpack --config=build/webpack.app.config.js --env=production && electron-builder --publish never",
+    "dist": "yarn compile && electron-builder --publish never"
+  },
+  "dependencies": {
+    "@binance-chain/javascript-sdk": "^2.16.0",
+    "@panter/vue-i18next": "^0.15.1",
+    "@smokenetwork/smoke-js": "^0.1.2",
+    "@whaleshares/wlsjs": "^0.1.7",
+    "bitcoinjs-lib": "^5.1.6",
+    "bitsharesjs": "^3.1.1",
+    "bootstrap-vue": "^2.0.3",
+    "chalk": "^2.4.2",
+    "crypto-js": "^3.1.9-1",
+    "dexie": "^2.0.4",
+    "electron-devtools-installer": "^2.2.4",
+    "elliptic": "^6.5.1",
+    "eosjs": "^20.0.0",
+    "eosjs-ecc": "^4.0.7",
+    "fs-jetpack": "^2.2.2",
+    "i18next": "^17.1.0",
+    "i18next-node-fs-backend": "^2.1.3",
+    "lzma": "^2.3.2",
+    "otpauth": "^5.0.3",
+    "readline": "^1.3.0",
+    "steem": "^0.7.7",
+    "typeface-rajdhani": "0.0.72",
+    "typeface-roboto": "0.0.75",
+    "vue": "^2.6.10",
+    "vue-multiselect": "^2.1.6",
+    "vue-password-strength-meter": "^1.5.0",
+    "vue-router": "^3.1.3",
+    "vuex": "^3.1.1",
+    "ws": "^7.1.2",
+    "zxcvbn": "^4.4.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.3",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "electron": "^3.0.0",
+    "electron-builder": "^21.2.0",
+    "eslint": "^6.5.1",
+    "eslint-plugin-vue": "^5.2.3",
+    "file-loader": "^4.2.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "source-map-support": "^0.5.13",
+    "style-loader": "^1.0.0",
+    "vue-loader": "^15.7.1",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-merge": "^4.2.2",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
